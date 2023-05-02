@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+{% block head_block %} {% endblock %}
+{% block body_block %}
+<div class="container">
+    <br/>
+    <h1 class="float-right"> Update Resume </h1>
+    <br/>
+
+    <form method="POST" action="{% url 'resume_update' pk=form.instance.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group" >
+            <input type="submit" value="Update" class="btn btn-primary">
+            <a href="javascript:history.back()" class="btn btn-dark"> Back </a>
+        </div>
+        {{ form.as_p }}
+        {% if uploaded_image %}
+            <p>File uploaded at: <a href="{{uploaded_image_url}}">{{uploaded_image}}</a></p>
+        {% endif %}
+        
+    </form>
+</div>
+{% endblock %}
